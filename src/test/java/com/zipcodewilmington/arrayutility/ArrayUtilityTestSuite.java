@@ -11,9 +11,9 @@ import org.junit.runners.Suite;
 
 @Suite.SuiteClasses({
         CountDuplicatesInMergeTest.class,
-        GetMostCommonFromMergeTest.class,
-        GetNumberOfOccurrencesTest.class,
-        RemoveValueTest.class
+//        GetMostCommonFromMergeTest.class,
+//        GetNumberOfOccurrencesTest.class,
+//        RemoveValueTest.class
 })
 public class ArrayUtilityTestSuite {
 }
