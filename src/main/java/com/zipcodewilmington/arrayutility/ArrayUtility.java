@@ -7,7 +7,7 @@ import java.util.Arrays;
  */
 public class ArrayUtility<T> {
 
-    T[] newArray;
+    private T[] newArray;
 
     public ArrayUtility(T[] newArray) {
 
@@ -16,58 +16,60 @@ public class ArrayUtility<T> {
 
     public T[] mergeArrays(T[] arrayToMerge) {
 
-        T[] ansArray = Arrays.copyOf(newArray, newArray.length + arrayToMerge.length);
-
-        for (int i = 0; i < newArray.length; i++) {
-            ansArray[i] = newArray[i];
-
+       T[] mergeArray = Arrays.copyOf(newArray, newArray.length + arrayToMerge.length);
+        for (int i=0; i<newArray.length;i++){
+            mergeArray[i] = newArray[i];
         }
-        for (int i = newArray.length, j = 0; j < arrayToMerge.length; i++, j++) {
-            ansArray[i] = arrayToMerge[j];
+
+        for(int i = newArray.length, j=0; j<arrayToMerge.length; i++, j++){
+            mergeArray[i] = arrayToMerge[j];
         }
-        return ansArray;
+
+        return mergeArray;
     }
 
     public Integer getNumberOfOccurrences(T valueToEvaluate) {
-        int counter = 0;
-        for (T occ : newArray) {
-            if (occ == valueToEvaluate) {
-                counter++;
 
+        int occ =0;
+        for (T c : newArray) {
+            if (c==valueToEvaluate){
+                occ++;
             }
         }
-        return counter;
+
+        return occ;
     }
 
     public Integer countDuplicatesInMerge(T[] arrayToMerge, T value) {
 
         newArray = mergeArrays(arrayToMerge);
         return getNumberOfOccurrences(value);
+
     }
 
     public T getMostCommonFromMerge(T[] arrayToMerge) {
 
-        Integer counter = 0;
-        T mostCommon = null;
-        T[] appArray = mergeArrays(arrayToMerge);
-        for (T thing : appArray) {
-            if (getNumberOfOccurrences(thing) > counter) {
-                counter = getNumberOfOccurrences(thing);
-                mostCommon = thing;
-
+        newArray = mergeArrays(arrayToMerge);
+        int count = 0;
+        T common = null;
+        for(T c : newArray){
+            if ( getNumberOfOccurrences(c) > count){
+                count = getNumberOfOccurrences(c);
+                common = c;
             }
         }
-        return mostCommon;
+        return common;
     }
 
     public T[] removeValue(T object) {
 
-        Integer index = 0;
+        int j=0;
         T[] appArray = Arrays.copyOf(newArray, newArray.length - getNumberOfOccurrences(object));
-        for (int i = 0; i < newArray.length; i++) {
-            if (newArray[i] != object) {
-                appArray[index] = newArray[i];
-                index++;
+        for( int i=0; i<newArray.length; i++){
+            if (newArray[i] !=object)
+            {
+                appArray[j] = newArray[i];
+                j++;
             }
         }
         return appArray;
